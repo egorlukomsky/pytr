@@ -199,6 +199,8 @@ class Event:
                 for key, elem_dict in zip(titles, shares_dicts + fees_dicts):
                     elem_unparsed = elem_dict.get("detail", {}).get("text", "")
                     elem_parsed = re.sub("[^\,\.\d-]", "", elem_unparsed).replace(
+                        ".", ""
+                    ).replace(
                         ",", "."
                     )
                     return_vals[key] = (
@@ -234,6 +236,8 @@ class Event:
             for taxes_dict in taxes_dicts:
                 unparsed_taxes_val = taxes_dict.get("detail", {}).get("text", "")
                 parsed_taxes_val = re.sub("[^\,\.\d-]", "", unparsed_taxes_val).replace(
+                    ".", ""
+                ).replace(
                     ",", "."
                 )
                 if parsed_taxes_val != "" and float(parsed_taxes_val) != 0.0:
